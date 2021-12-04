@@ -7,6 +7,7 @@ use App\Repositories\CourseRepository;
 class CourseService
 {
     protected $repository;
+    
     /**
      * __construct
      *
@@ -37,10 +38,9 @@ class CourseService
     {
         return $this->repository->getCourseByUuid($identify);
     }
-    
-    
+     
     /**
-     * createNewCourse
+     * storeNewCourse
      *
      * @param  mixed $data
      * @return object
@@ -48,6 +48,17 @@ class CourseService
     public function storeNewCourse(array $data)
     {
         return $this->repository->storeNewCourse($data);
+    }
+   
+    /**
+     * updateNewCourse
+     *
+     * @param  mixed $data
+     * @return object
+     */
+    public function updateCourse(string $identify, array $data)
+    {
+        return $this->repository->updateCourseByUuid($identify, $data);
     }
 
     /**

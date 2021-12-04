@@ -23,8 +23,9 @@ class StoreUpdateCourseRequest extends FormRequest
      */
     public function rules()
     {
+        $uuid = $this->course ?? '';
         return [
-            'title' => ['required', 'min:3', 'max:255', 'unique:courses'],
+            'title' => ['required', 'min:3', 'max:255', "unique:courses,title,{$uuid},uuid"],
             'description' => ['nullable', 'min:3', 'max:9999'],
         ];
     }

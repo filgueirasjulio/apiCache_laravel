@@ -9,5 +9,6 @@ use App\Http\Controllers\Api\{
 
 Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/courses/{identify}', [CourseController::class, 'show']);
+Route::put('/courses/{course}', [CourseController::class, 'update']);
 Route::post('/courses', [CourseController::class, 'store']);
 Route::delete('/courses/{identify}', [CourseController::class, 'destroy']);
