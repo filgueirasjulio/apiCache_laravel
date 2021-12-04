@@ -49,4 +49,14 @@ class CourseService
     {
         return $this->repository->storeNewCourse($data);
     }
+
+    /**
+     * getDelete
+     *
+     */
+    public function deleteCourse(string $identify)
+    {
+        return $this->repository->deleteCourseByUuid($identify);
+    }
+    
 }

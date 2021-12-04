@@ -49,4 +49,16 @@ class CourseRepository
     {
         return $this->entity->where('uuid', $identify)->firstOrFail();
     }
+
+    /**
+     * deleteCourseByUuid
+     *
+     * @param  mixed $identify
+     */
+    public function deleteCourseByUuid(string $identify)
+    {
+        $course = $this->getCourseByUuid($identify);
+
+        return $course->delete();
+    }
 }
