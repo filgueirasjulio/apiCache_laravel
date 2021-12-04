@@ -27,9 +27,26 @@ class CourseRepository
     {
         return $this->entity->get();
     }
-
+    
+    /**
+     * storeNewCourse
+     *
+     * @param  mixed $data
+     * @return object
+     */
     public function storeNewCourse(array $data)
     {
         return $this->entity->create($data);
+    }
+    
+    /**
+     * getCourseByUuid
+     *
+     * @param  mixed $identify
+     * @return object
+     */
+    public function getCourseByUuid(string $identify)
+    {
+        return $this->entity->where('uuid', $identify)->firstOrFail();
     }
 }

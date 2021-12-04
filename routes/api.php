@@ -8,4 +8,5 @@ use App\Http\Controllers\Api\{
 /** Cursos */
 
 Route::get('/courses', [CourseController::class, 'index']);
+Route::get('/courses/{identify}', [CourseController::class, 'show']);
 Route::post('/courses', [CourseController::class, 'store']);

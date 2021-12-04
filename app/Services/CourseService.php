@@ -27,6 +27,17 @@ class CourseService
     {
         return $this->repository->getAllCourses();
     }
+
+    /**
+     * getCourse
+     *
+     * @return object
+     */
+    public function getCourse(string $identify)
+    {
+        return $this->repository->getCourseByUuid($identify);
+    }
+    
     
     /**
      * createNewCourse
