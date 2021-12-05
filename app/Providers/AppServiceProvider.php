@@ -3,9 +3,15 @@
 namespace App\Providers;
 
 use App\Models\{
-    Course
+    Course,
+    Module
 };
-use App\Observers\CourseObserve;
+
+use App\Observers\{
+    CourseObserver,
+    ModuleObserver
+};
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Course::observe(CourseObserve::class);
+        Course::observe(CourseObserver::class);
+        Module::observe(ModuleObserver::class);
     }
 }

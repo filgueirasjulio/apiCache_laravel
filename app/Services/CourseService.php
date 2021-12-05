@@ -34,9 +34,9 @@ class CourseService
      *
      * @return object
      */
-    public function getCourse(string $identify)
+    public function getCourse(string $course_uuid)
     {
-        return $this->repository->getCourseByUuid($identify);
+        return $this->repository->getCourseByUuid($course_uuid);
     }
      
     /**
@@ -56,18 +56,18 @@ class CourseService
      * @param  mixed $data
      * @return object
      */
-    public function updateCourse(string $identify, array $data)
+    public function updateCourse(string $course_uuid, array $data)
     {
-        return $this->repository->updateCourseByUuid($identify, $data);
+        return $this->repository->updateCourseByUuid($course_uuid, $data);
     }
 
     /**
      * getDelete
      *
      */
-    public function deleteCourse(string $identify)
+    public function deleteCourse(string $course_uuid)
     {
-        return $this->repository->deleteCourseByUuid($identify);
+        return $this->repository->deleteCourseByUuid($course_uuid);
     }
     
 }

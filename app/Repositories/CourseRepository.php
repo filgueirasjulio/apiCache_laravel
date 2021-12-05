@@ -42,24 +42,24 @@ class CourseRepository
     /**
      * getCourseByUuid
      *
-     * @param  mixed $identify
+     * @param  mixed $course_uuid
      * @return object
      */
-    public function getCourseByUuid(string $identify)
+    public function getCourseByUuid(string $course_uuid)
     {
-        return $this->entity->where('uuid', $identify)->firstOrFail();
+        return $this->entity->where('uuid', $course_uuid)->firstOrFail();
     }
     
     /**
      * updateCourseByUuid
      *
-     * @param  mixed $identify
+     * @param  mixed $course_uuid
      * @param  mixed $data
      * @return void
      */
-    public function updateCourseByUuid(string $identify, array $data)
+    public function updateCourseByUuid(string $course_uuid, array $data)
     {
-        $course = $this->getCourseByUuid($identify);
+        $course = $this->getCourseByUuid($course_uuid);
       
         return $course->update($data);
     }
@@ -67,11 +67,11 @@ class CourseRepository
     /**
      * deleteCourseByUuid
      *
-     * @param  mixed $identify
+     * @param  mixed $course_uuid
      */
-    public function deleteCourseByUuid(string $identify)
+    public function deleteCourseByUuid(string $course_uuid)
     {
-        $course = $this->getCourseByUuid($identify);
+        $course = $this->getCourseByUuid($course_uuid);
 
         return $course->delete();
     }

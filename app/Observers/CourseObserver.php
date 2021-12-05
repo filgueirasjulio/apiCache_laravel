@@ -5,7 +5,7 @@ namespace App\Observers;
 use App\Models\Course;
 use Illuminate\Support\Str;
 
-class CourseObserve
+class CourseObserver
 {
     /**
      * Handle the Course "creating" event.
