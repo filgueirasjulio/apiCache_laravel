@@ -44,6 +44,8 @@ class LessonRepository
     {
         $data['module_id'] = $moduleId;
 
+        Cache::forget('courses');
+
         return $this->entity->create($data);
     }
     
