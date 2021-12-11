@@ -25,7 +25,9 @@ class CourseRepository
      */
     public function getAllCourses()
     {
-        return $this->entity->get();
+        return $this->entity
+                    ->with('modules.lessons')
+                    ->get();
     }
     
     /**
@@ -45,9 +47,11 @@ class CourseRepository
      * @param  mixed $course_uuid
      * @return object
      */
-    public function getCourseByUuid(string $course_uuid)
+    public function getCourseByUuid(string $course_uuid, bool $loadRelationShip = true)
     {
-        return $this->entity->where('uuid', $course_uuid)->firstOrFail();
+        return $this->entity
+                ->with($loadRelationShip ? 'modules.lessons' : '')
+                ->where('uuid', $course_uuid)->firstOrFail();
     }
     
     /**
@@ -59,7 +63,7 @@ class CourseRepository
      */
     public function updateCourseByUuid(string $course_uuid, array $data)
     {
-        $course = $this->getCourseByUuid($course_uuid);
+        $course = $this->getCourseByUuid($course_uuid, false);
       
         return $course->update($data);
     }
@@ -71,7 +75,7 @@ class CourseRepository
      */
     public function deleteCourseByUuid(string $course_uuid)
     {
-        $course = $this->getCourseByUuid($course_uuid);
+        $course = $this->getCourseByUuid($course_uuid, false);
 
         return $course->delete();
     }

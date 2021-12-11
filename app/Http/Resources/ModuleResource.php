@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Module;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,7 +19,8 @@ class ModuleResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'name' => $this->name,
-            'date' => Carbon::make($this->created_at)->format('Y-m-d')
+            'date' => Carbon::make($this->created_at)->format('Y-m-d'),
+            'lessons' => LessonResource::collection($this->whenLoaded('lessons'))
         ];
     }
 }
