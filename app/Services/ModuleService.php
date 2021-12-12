@@ -48,6 +48,7 @@ class ModuleService
      * storeNewModule
      *
      * @param  array $data
+     * @param  string $course_uuid
      * @return object
      */
     public function storeNewModule(array $data, string $course_uuid) 
@@ -61,6 +62,7 @@ class ModuleService
      * updateModule
      *
      * @param  array $data
+     * @param  string $course_uuid
      * @param  string $module_uuid
      * @return object
      */
@@ -74,6 +76,7 @@ class ModuleService
     /**
      * deleteModule
      *
+    * @param  string $course_uuid
      * @param  mixed $module_uuid
      * @return object
      */

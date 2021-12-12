@@ -8,6 +8,24 @@ use Tests\TestCase;
 
 class ModuleTest extends TestCase
 {
+    public $course;
+    public $module;
+
+    protected function setUp(): void
+    {  
+        parent::setUp();
+        
+        $this->course = Course::factory()->create();
+
+        $this->module = Module::factory()->create([
+            'course_id' => $this->course->id
+        ]);
+
+        Module::factory()->count(9)->create([
+            'course_id' => $this->course->id
+        ]);
+    }
+
     /**
      * A basic feature test example.
      *
@@ -15,13 +33,7 @@ class ModuleTest extends TestCase
      */
     public function test_get_all_modules_by_course()
     {
-        $course = Course::factory()->create();
-
-        Module::factory()->count(10)->create([
-            'course_id' => $course->id
-        ]);
-
-        $response = $this->getJson("api/courses/{$course->uuid}/modules");
+        $response = $this->getJson("api/courses/{$this->course->uuid}/modules");
 
         $response->assertStatus(200)
                     ->assertJsonCount(10, 'data');
@@ -36,31 +48,21 @@ class ModuleTest extends TestCase
 
     public function test_get_module_by_course()
     {
-        $course = Course::factory()->create();
-
-        $module = Module::factory()->create([
-            'course_id' => $course->id
-        ]);
-
-        $response = $this->getJson("api/courses/{$course->uuid}/modules/{$module->uuid}");
+        $response = $this->getJson("api/courses/{$this->course->uuid}/modules/{$this->module->uuid}");
 
         $response->assertStatus(200);
     }
 
     public function test_validations_create_module_by_course()
     {
-        $course = Course::factory()->create();
-
-        $response = $this->postJson("api/courses/{$course->uuid}/modules", []);
+        $response = $this->postJson("api/courses/{$this->course->uuid}/modules", []);
 
         $response->assertStatus(422);
     }
 
     public function test_create_module_by_course()
     {
-        $course = Course::factory()->create();
-
-        $response = $this->postJson("api/courses/{$course->uuid}/modules", [
+        $response = $this->postJson("api/courses/{$this->course->uuid}/modules", [
             'name' => 'Módulo 01',
         ]);
 
@@ -69,10 +71,7 @@ class ModuleTest extends TestCase
 
     public function test_validations_update_module_by_course()
     {
-        $course = Course::factory()->create();
-        $module = Module::factory()->create();
-
-        $response = $this->putJson("api/courses/{$course->uuid}/modules/{$module->uuid}", []);
+        $response = $this->putJson("api/courses/{$this->course->uuid}/modules/{$this->module->uuid}", []);
 
         $response->assertStatus(422);
     }
@@ -80,11 +79,8 @@ class ModuleTest extends TestCase
 
     public function test_update_module_by_course()
     {
-        $course = Course::factory()->create();
-        $module = Module::factory()->create();
-
-        $response = $this->putJson("api/courses/{$course->uuid}/modules/{$module->uuid}", [
-            'course' => $course->uuid,
+        $response = $this->putJson("api/courses/{$this->course->uuid}/modules/{$this->module->uuid}", [
+            'course' => $this->course->uuid,
             'name' => 'Módulo Updated',
         ]);
 
@@ -93,19 +89,14 @@ class ModuleTest extends TestCase
 
     public function test_notfound_delete_module_by_course()
     {
-        $course = Course::factory()->create();
-
-        $response = $this->deleteJson("api/courses/{$course->uuid}/modules/fake_module");
+        $response = $this->deleteJson("api/courses/{$this->course->uuid}/modules/fake_module");
 
         $response->assertStatus(404);
     }
 
     public function test_delete_module_by_course()
     {
-        $course = Course::factory()->create();
-        $module = Module::factory()->create();
-
-        $response = $this->deleteJson("api/courses/{$course->uuid}/modules/{$module->uuid}");
+        $response = $this->deleteJson("api/courses/{$this->course->uuid}/modules/{$this->module->uuid}");
 
         $response->assertStatus(204);
     }

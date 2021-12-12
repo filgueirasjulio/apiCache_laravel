@@ -26,11 +26,12 @@ class ModuleController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  string  $course_uuid
      * @return \Illuminate\Http\Response
      */
-    public function index(string $course)
+    public function index(string $course_uuid)
     {
-        $modules = $this->service->getModulesByCourse($course);
+        $modules = $this->service->getModulesByCourse($course_uuid);
 
         return  ModuleResource::collection($modules);
     }
@@ -67,6 +68,7 @@ class ModuleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  string  $course_uuid
      * @param string $module_uuid
      * @return \Illuminate\Http\Response
      */
@@ -79,7 +81,7 @@ class ModuleController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * @param  string  $course_uuid
      * @param  int  $module_uuid
      * @return \Illuminate\Http\Response
      */

@@ -7,6 +7,17 @@ use App\Models\Course;
 
 class CourseTest extends TestCase
 {
+    public $course;
+
+    protected function setUp(): void
+    {  
+        parent::setUp();
+        
+        $this->course = Course::factory()->create();
+
+        Course::factory()->count(9)->create();
+    }
+
     public function test_get_all_courses()
     {
         $response = $this->getJson('/api/courses');
@@ -15,9 +26,7 @@ class CourseTest extends TestCase
     }
 
     public function test_get_count_courses()
-    {
-        Course::factory()->count(10)->create();
-        
+    {   
         $response = $this->getJson('/api/courses');
       
         $response->assertJsonCount(10, 'data');
@@ -26,9 +35,7 @@ class CourseTest extends TestCase
 
     public function test_get_course()
     {
-        $course = Course::factory()->create();
-
-        $response = $this->getJson("api/courses/{$course->uuid}");
+        $response = $this->getJson("api/courses/{$this->course->uuid}");
 
         $response->assertStatus(200);
     }
@@ -58,18 +65,14 @@ class CourseTest extends TestCase
     
     public function test_validation_update_course()
     {
-        $course = Course::factory()->create();
-
-        $response = $this->putJson("api/courses/{$course->uuid}", []);
+        $response = $this->putJson("api/courses/{$this->course->uuid}", []);
 
         $response->assertStatus(422);
     }
 
     public function test_update_course()
     {
-        $course = Course::factory()->create();
-
-        $response = $this->putJson("api/courses/{$course->uuid}", [
+        $response = $this->putJson("api/courses/{$this->course->uuid}", [
             'title' => 'Novo nome de curso'
         ]);
 
@@ -86,9 +89,7 @@ class CourseTest extends TestCase
 
     public function test_delete_course()
     {
-        $course = Course::factory()->create();
-
-        $response = $this->deleteJson("api/courses/{$course->uuid}");
+        $response = $this->deleteJson("api/courses/{$this->course->uuid}");
 
         $response->assertStatus(204);
     }

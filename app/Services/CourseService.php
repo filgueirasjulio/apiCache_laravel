@@ -32,6 +32,7 @@ class CourseService
     /**
      * getCourse
      *
+     * @param  string  $course_uuid
      * @return object
      */
     public function getCourse(string $course_uuid)
@@ -54,6 +55,7 @@ class CourseService
      * updateNewCourse
      *
      * @param  mixed $data
+     * @param  string  $course_uuid
      * @return object
      */
     public function updateCourse(string $course_uuid, array $data)
@@ -64,6 +66,7 @@ class CourseService
     /**
      * getDelete
      *
+     * @param  string  $course_uuid
      */
     public function deleteCourse(string $course_uuid)
     {
