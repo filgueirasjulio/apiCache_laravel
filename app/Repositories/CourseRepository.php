@@ -11,7 +11,7 @@ class CourseRepository
     /**
      * __construct
      *
-     * @param  mixed $courseService
+     * 
      * @return void
      */
     public function __construct(Course $course)
@@ -36,8 +36,7 @@ class CourseRepository
     
     /**
      * storeNewCourse
-     *
-     * @param  mixed $data
+     * 
      * @return object
      */
     public function storeNewCourse(array $data)
@@ -49,8 +48,7 @@ class CourseRepository
     
     /**
      * getCourseByUuid
-     *
-     * @param  mixed $course_uuid
+     * 
      * @return object
      */
     public function getCourseByUuid(string $course_uuid, bool $loadRelationShip = true)
@@ -66,10 +64,8 @@ class CourseRepository
     
     /**
      * updateCourseByUuid
-     *
-     * @param  mixed $course_uuid
-     * @param  mixed $data
-     * @return void
+     * 
+     * @return object
      */
     public function updateCourseByUuid(string $course_uuid, array $data)
     {
@@ -82,8 +78,8 @@ class CourseRepository
 
     /**
      * deleteCourseByUuid
-     *
-     * @param  mixed $course_uuid
+     * 
+     * @return object
      */
     public function deleteCourseByUuid(string $course_uuid)
     {

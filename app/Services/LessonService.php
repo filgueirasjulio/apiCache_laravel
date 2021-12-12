@@ -29,10 +29,7 @@ class LessonService
     
     /**
      * getLessonsByModule
-     *
-     * @param  string  $course_uuid
-     * @param  string  $module_uuid
-     * @param  string  $lesson_uuid
+     * 
      * @return object
      */
     public function getLessonsByModule(string $course_uuid, string $module_uuid)
@@ -45,8 +42,7 @@ class LessonService
     
     /**
      * createNewLesson
-     *
-     * @param  mixed $data
+     * 
      * @return object
      */
     public function createNewLesson(array $data, string $course_uuid, string $module_uuid)
@@ -59,10 +55,7 @@ class LessonService
     
     /**
      * getLessonByModule
-     *
-     * @param  string  $course_uuid
-     * @param  string  $module_uuid
-     * @param  string  $lesson_uuid
+     * 
      * @return object
      */
     public function getLessonByModule(string $course_uuid, string $module_uuid, string $lesson_uuid)
@@ -75,11 +68,7 @@ class LessonService
     
     /**
      * updateLesson
-     *
-     * @param  string  $course_uuid
-     * @param  string  $module_uuid
-     * @param  string  $lesson_uuid
-     * @param  mixed $data
+     * 
      * @return object
      */
     public function updateLesson(string $course_uuid, string $module_uuid, string $lesson_uuid, array $data)
@@ -92,10 +81,7 @@ class LessonService
     
     /**
      * deleteLesson
-     *
-     * @param  string  $course_uuid
-     * @param  string  $module_uuid
-     * @param  string  $lesson_uuid
+     * 
      * @return object
      */
     public function deleteLesson(string $course_uuid, string $module_uuid, string $lesson_uuid)

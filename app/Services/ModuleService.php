@@ -9,7 +9,12 @@ class ModuleService
 {
     protected $repository;
     protected $courseRepository;
-
+    
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct(ModuleRepository $repository,
                                 CourseRepository $courseRepository)
     {
@@ -19,7 +24,6 @@ class ModuleService
     
     /**
      * getModulesByCourse
-     * @param $course_uuid
      *
      * @return collection
      */
@@ -32,9 +36,7 @@ class ModuleService
 
     /**
      * getModule
-     *
-     * @param  string  $course_uuid
-     * @param  string  $module_uuid
+     * 
      * @return collection
      */
     public function getModuleByCourse(string $course_uuid, string $module_uuid)
@@ -46,9 +48,7 @@ class ModuleService
       
     /**
      * storeNewModule
-     *
-     * @param  array $data
-     * @param  string $course_uuid
+     * 
      * @return object
      */
     public function storeNewModule(array $data, string $course_uuid) 
@@ -60,10 +60,7 @@ class ModuleService
 
     /**
      * updateModule
-     *
-     * @param  array $data
-     * @param  string $course_uuid
-     * @param  string $module_uuid
+     * 
      * @return object
      */
     public function updateModule(array $data, string $course_uuid, string $module_uuid) 
@@ -75,9 +72,7 @@ class ModuleService
     
     /**
      * deleteModule
-     *
-    * @param  string $course_uuid
-     * @param  mixed $module_uuid
+     * 
      * @return object
      */
     public function deleteModule(string $course_uuid, string $module_uuid)

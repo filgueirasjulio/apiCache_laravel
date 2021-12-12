@@ -12,7 +12,6 @@ class LessonRepository
     /**
      * __construct
      *
-     * @param  mixed $lesson
      * @return void
      */
     public function __construct(Lesson $lesson)
@@ -22,8 +21,7 @@ class LessonRepository
     
     /**
      * getLessonsModule
-     *
-     * @param  mixed $module_id
+     * 
      * @return collectionn
      */
     public function getLessonsModule(int $module_id)
@@ -36,8 +34,6 @@ class LessonRepository
     /**
      * createNewLesson
      *
-     * @param  mixed $moduleId
-     * @param  mixed $data
      * @return object
      */
     public function createNewLesson(int $moduleId, array $data)
@@ -51,9 +47,7 @@ class LessonRepository
     
     /**
      * getLessonByModule
-     *
-     * @param  mixed $module_id
-     * @param  mixed $lesson_uuid
+     * 
      * @return object
      */
     public function getLessonByModule(int $module_id, string $lesson_uuid)
@@ -67,7 +61,6 @@ class LessonRepository
     /**
      * getLessonByUuid
      *
-     * @param  mixed $lesson_uuid
      * @return object
      */
     public function getLessonByUuid(string $lesson_uuid)
@@ -80,9 +73,6 @@ class LessonRepository
     /**
      * updateLessonByUuid
      *
-     * @param  mixed $module_id
-     * @param  mixed $lesson_uuid
-     * @param  mixed $data
      * @return object
      */
     public function updateLessonByUuid(int $module_id, string $lesson_uuid, array $data)
@@ -99,7 +89,6 @@ class LessonRepository
     /**
      * deleteLessonByUuid
      *
-     * @param  mixed $lesson_uuid
      * @return object
      */
     public function deleteLessonByUuid(string $lesson_uuid)

@@ -11,7 +11,12 @@ use App\Http\Resources\CourseResource;
 class CourseController extends Controller
 {
     protected $courseService;
-
+    
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct(CourseService $courseService)
     {
         $this->courseService = $courseService;
@@ -31,7 +36,6 @@ class CourseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreUpdateCourseRequest $request)
@@ -44,7 +48,6 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $course_uuid
      * @return \Illuminate\Http\Response
      */
     public function show(string $course_uuid)
@@ -57,8 +60,6 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $course_uuid
      * @return \Illuminate\Http\Response
      */
     public function update(StoreUpdateCourseRequest $request, string $course_uuid)
@@ -71,7 +72,6 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $course_uuid
      * @return \Illuminate\Http\Response
      */
     public function destroy(string $course_uuid)

@@ -11,7 +11,6 @@ class CourseService
     /**
      * __construct
      *
-     * @param  mixed $courseService
      * @return void
      */
     public function __construct(CourseRepository $repository)
@@ -31,8 +30,7 @@ class CourseService
 
     /**
      * getCourse
-     *
-     * @param  string  $course_uuid
+     * 
      * @return object
      */
     public function getCourse(string $course_uuid)
@@ -42,8 +40,7 @@ class CourseService
      
     /**
      * storeNewCourse
-     *
-     * @param  mixed $data
+     * 
      * @return object
      */
     public function storeNewCourse(array $data)
@@ -53,9 +50,7 @@ class CourseService
    
     /**
      * updateNewCourse
-     *
-     * @param  mixed $data
-     * @param  string  $course_uuid
+     * 
      * @return object
      */
     public function updateCourse(string $course_uuid, array $data)
@@ -65,8 +60,8 @@ class CourseService
 
     /**
      * getDelete
-     *
-     * @param  string  $course_uuid
+     * 
+     * @return object
      */
     public function deleteCourse(string $course_uuid)
     {

@@ -13,7 +13,6 @@ class ModuleRepository
     /**
      * __construct
      *
-     * @param  mixed $module
      * @return void
      */
     public function __construct(Module $module)
@@ -24,7 +23,6 @@ class ModuleRepository
     /**
      * getModulesByCourse
      *
-     * @param  mixed $course_id
      * @return collection
      */
     public function getModulesByCourse($course_id)
@@ -39,8 +37,6 @@ class ModuleRepository
      /**
      * getModuleByCourse
      *
-     * @param  mixed $course_id
-     * @param  mixed $module_uuid
      * @return void
      */
     public function getModuleByCourse(int $course_id, string $module_uuid)
@@ -54,8 +50,6 @@ class ModuleRepository
     /**
      * getModuleByUuid
      *
-     * @param  mixed $course_id
-     * @param  mixed $module_uuid
      * @return object
      */
     public function getModuleByUuid(string $module_uuid)
@@ -68,8 +62,6 @@ class ModuleRepository
     /**
      * storeNewCourse
      *
-     * @param  mixed $data
-     * @param  mixed $course_id
      * @return object
      */
     public function storeNewCourse(array $data, int $courseId)
@@ -84,9 +76,6 @@ class ModuleRepository
     /**
      * updateModule
      *
-     * @param  mixed $data
-     * @param  mixed $courseId
-     * @param  mixed $module_uuid
      * @return object
      */
     public function updateModule(array $data, int $courseId, string $module_uuid)
@@ -103,7 +92,6 @@ class ModuleRepository
     /**
      * deleteModuleByUuid
      *
-     * @param  mixed $module_uuid
      * @return object
      */
     public function deleteModuleByUuid(string $module_uuid)

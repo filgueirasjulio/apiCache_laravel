@@ -21,6 +21,8 @@ class LessonController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  string  $course_uuid
+     * @param  string  $module_uuid
      * @return \Illuminate\Http\Response
      */
     public function index(string $course_uuid, string $module_uuid)
@@ -34,6 +36,8 @@ class LessonController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  string  $course_uuid
+     * @param  string  $module_uuid
      * @return \Illuminate\Http\Response
      */
     public function store(StoreUpdateLessonRequest $request, string $course_uuid, string $module_uuid)
