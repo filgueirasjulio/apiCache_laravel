@@ -69,9 +69,9 @@ class ModuleController extends Controller
      * @param string $module_uuid
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUpdateModuleRequest $request, string $module_uuid)
+    public function update(StoreUpdateModuleRequest $request, string $course_uuid, string $module_uuid)
     {
-        $this->service->updateModule($request->validated(), $module_uuid);
+        $this->service->updateModule($request->validated(), $course_uuid, $module_uuid);
 
         return response()->json(['message' => 'updated']);
     }
@@ -82,9 +82,9 @@ class ModuleController extends Controller
      * @param  int  $module_uuid
      * @return \Illuminate\Http\Response
      */
-    public function destroy(string $module_uuid)
+    public function destroy(string $course_uuid, string $module_uuid)
     {
-        $module = $this->service->deleteModule($module_uuid);
+        $module = $this->service->deleteModule($course_uuid, $module_uuid);
 
         return response()->json([], 204);
     }

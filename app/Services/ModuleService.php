@@ -64,9 +64,9 @@ class ModuleService
      * @param  string $module_uuid
      * @return object
      */
-    public function updateModule(array $data, string $module_uuid) 
+    public function updateModule(array $data, string $course_uuid, string $module_uuid) 
     {
-        $course = $this->courseRepository->getCourseByUuid($data['course']);
+        $course = $this->courseRepository->getCourseByUuid($course_uuid);
     
         return $this->repository->updateModule($data, $course->id, $module_uuid);
     }
@@ -77,8 +77,10 @@ class ModuleService
      * @param  mixed $module_uuid
      * @return object
      */
-    public function deleteModule(string $module_uuid)
+    public function deleteModule(string $course_uuid, string $module_uuid)
     {
+        $course = $this->courseRepository->getCourseByUuid($course_uuid);
+    
         return $this->repository->deleteModuleByUuid($module_uuid);
     }
 }
