@@ -61,7 +61,6 @@ class ModuleTest extends TestCase
         $course = Course::factory()->create();
 
         $response = $this->postJson("api/courses/{$course->uuid}/modules", [
-            'course' => $course->uuid,
             'name' => 'Módulo 01',
         ]);
 

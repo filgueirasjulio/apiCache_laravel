@@ -25,7 +25,6 @@ class StoreUpdateModuleRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:3', 'max:255'],
-            'course' => ['required', 'exists:courses,uuid'],
         ];
     }
 }

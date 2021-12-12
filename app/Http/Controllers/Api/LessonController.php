@@ -23,9 +23,9 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($module_uuid)
+    public function index(string $course_uuid, string $module_uuid)
     {
-        $lessons = $this->lessonService->getLessonsByModule($module_uuid);
+        $lessons = $this->lessonService->getLessonsByModule($course_uuid, $module_uuid);
 
         return LessonResource::collection($lessons);
     }
@@ -36,9 +36,9 @@ class LessonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUpdateLessonRequest $request)
+    public function store(StoreUpdateLessonRequest $request, string $course_uuid, string $module_uuid)
     {
-        $module = $this->lessonService->createNewLesson($request->validated());
+        $module = $this->lessonService->createNewLesson($request->validated(), $course_uuid, $module_uuid);
 
         return new LessonResource($module);
     }
@@ -46,13 +46,14 @@ class LessonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param string $module_uuid
+     * @param  string  $course_uuid
+     * @param  string  $module_uuid
      * @param  string  $lesson_uuid
      * @return \Illuminate\Http\Response
      */
-    public function show($module_uuid, $lesson_uuid)
+    public function show(string $course_uuid, string $module_uuid, string $lesson_uuid)
     {
-        $module = $this->lessonService->getLessonByModule($module_uuid, $lesson_uuid);
+        $module = $this->lessonService->getLessonByModule($course_uuid, $module_uuid, $lesson_uuid);
 
         return new LessonResource($module);
     }
@@ -61,12 +62,14 @@ class LessonController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  string  $course_uuid
+     * @param  string  $module_uuid
      * @param  string  $lesson_uuid
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUpdateLessonRequest $request, $lesson_uuid)
+    public function update(StoreUpdateLessonRequest $request, string $course_uuid, string $module_uuid, string $lesson_uuid)
     {
-        $this->lessonService->updateLesson($lesson_uuid, $request->validated());
+        $this->lessonService->updateLesson($course_uuid, $module_uuid, $lesson_uuid, $request->validated());
 
         return response()->json(['message' => 'updated']);
     }
@@ -74,12 +77,14 @@ class LessonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  string  $course_uuid
+     * @param  string  $module_uuid
      * @param  string  $lesson_uuid
      * @return \Illuminate\Http\Response
      */
-    public function destroy($lesson_uuid)
+    public function destroy( string $course_uuid, string $module_uuid, string $lesson_uuid)
     {
-        $this->lessonService->deleteLesson($lesson_uuid);
+        $this->lessonService->deleteLesson($course_uuid, $module_uuid, $lesson_uuid);
 
         return response()->json([], 204);
     }

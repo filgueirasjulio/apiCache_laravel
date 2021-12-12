@@ -3,13 +3,14 @@
 namespace App\Services;
 
 use App\Repositories\{
+    CourseRepository,
     LessonRepository,
     ModuleRepository
 };
 
 class LessonService
 {
-    protected $lessonRepository, $moduleRepository;
+    protected $lessonRepository, $courseRepository, $moduleRepository;
     
     /**
      * __construct
@@ -18,20 +19,25 @@ class LessonService
      */
     public function __construct(
         LessonRepository $lessonRepository,
+        CourseRepository $courseRepository,
         ModuleRepository $moduleRepository
     ) {
         $this->lessonRepository = $lessonRepository;
+        $this->courseRepository = $courseRepository;
         $this->moduleRepository = $moduleRepository;
     }
     
     /**
      * getLessonsByModule
      *
-     * @param  mixed $module_uuid
+     * @param  string  $course_uuid
+     * @param  string  $module_uuid
+     * @param  string  $lesson_uuid
      * @return object
      */
-    public function getLessonsByModule(string $module_uuid)
+    public function getLessonsByModule(string $course_uuid, string $module_uuid)
     {
+        $course = $this->courseRepository->getCourseByUuid($course_uuid);
         $module = $this->moduleRepository->getModuleByUuid($module_uuid);
 
         return $this->lessonRepository->getLessonsModule($module->id);
@@ -43,9 +49,10 @@ class LessonService
      * @param  mixed $data
      * @return object
      */
-    public function createNewLesson(array $data)
+    public function createNewLesson(array $data, string $course_uuid, string $module_uuid)
     {
-        $module = $this->moduleRepository->getModuleByUuid($data['module']);
+        $course = $this->courseRepository->getCourseByUuid($course_uuid);
+        $module = $this->moduleRepository->getModuleByUuid($module_uuid);
 
         return $this->lessonRepository->createNewLesson($module->id, $data);
     }
@@ -53,12 +60,14 @@ class LessonService
     /**
      * getLessonByModule
      *
-     * @param  mixed $module_uuid
-     * @param  mixed $lesson_uuid
+     * @param  string  $course_uuid
+     * @param  string  $module_uuid
+     * @param  string  $lesson_uuid
      * @return object
      */
-    public function getLessonByModule(string $module_uuid, string $lesson_uuid)
+    public function getLessonByModule(string $course_uuid, string $module_uuid, string $lesson_uuid)
     {
+        $course = $this->courseRepository->getCourseByUuid($course_uuid);
         $module = $this->moduleRepository->getModuleByUuid($module_uuid);
 
         return $this->lessonRepository->getLessonByModule($module->id, $lesson_uuid);
@@ -67,13 +76,16 @@ class LessonService
     /**
      * updateLesson
      *
-     * @param  mixed $lesson_uuid
+     * @param  string  $course_uuid
+     * @param  string  $module_uuid
+     * @param  string  $lesson_uuid
      * @param  mixed $data
      * @return object
      */
-    public function updateLesson(string $lesson_uuid, array $data)
+    public function updateLesson(string $course_uuid, string $module_uuid, string $lesson_uuid, array $data)
     {
-        $module = $this->moduleRepository->getModuleByUuid($data['module']);
+        $course = $this->courseRepository->getCourseByUuid($course_uuid);
+        $module = $this->moduleRepository->getModuleByUuid($module_uuid);
 
         return $this->lessonRepository->updateLessonByUuid($module->id, $lesson_uuid, $data);
     }
@@ -81,11 +93,16 @@ class LessonService
     /**
      * deleteLesson
      *
-     * @param  mixed $lesson_uuid
+     * @param  string  $course_uuid
+     * @param  string  $module_uuid
+     * @param  string  $lesson_uuid
      * @return object
      */
-    public function deleteLesson(string $lesson_uuid)
+    public function deleteLesson(string $course_uuid, string $module_uuid, string $lesson_uuid)
     {
+        $course = $this->courseRepository->getCourseByUuid($course_uuid);
+        $module = $this->moduleRepository->getModuleByUuid($module_uuid);
+
         return $this->lessonRepository->deleteLessonByUuid($lesson_uuid);
     }
 }

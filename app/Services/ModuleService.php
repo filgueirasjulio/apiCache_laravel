@@ -50,9 +50,9 @@ class ModuleService
      * @param  array $data
      * @return object
      */
-    public function storeNewModule(array $data) 
+    public function storeNewModule(array $data, string $course_uuid) 
     {
-        $course = $this->courseRepository->getCourseByUuid($data['course']);
+        $course = $this->courseRepository->getCourseByUuid($course_uuid);
       
         return $this->repository->storeNewCourse($data, $course->id);
     }

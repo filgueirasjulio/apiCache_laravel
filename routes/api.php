@@ -22,8 +22,8 @@ Route::post('/courses/{course}/modules', [ModuleController::class, 'store']);
 Route::delete('/courses/{course}/modules/{module}', [ModuleController::class, 'destroy']);
 
 /** Módulos - Lições */
-Route::get('/modules/{module}/lessons', [LessonController::class, 'index']);
-Route::get('/modules/{module}/lessons/{lesson}', [LessonController::class, 'show']);
-Route::put('/lessons/{lesson}', [LessonController::class, 'update']);
-Route::post('/lessons', [LessonController::class, 'store']);
-Route::delete('/lessons/{lesson}', [LessonController::class, 'destroy']);
+Route::get('/courses/{course}/modules/{module}/lessons', [LessonController::class, 'index']);
+Route::get('/courses/{course}/modules/{module}/lessons/{lesson}', [LessonController::class, 'show']);
+Route::put('/courses/{course}/modules/{module}/lessons/{lesson}', [LessonController::class, 'update']);
+Route::post('/courses/{course}/modules/{module}/lessons', [LessonController::class, 'store']);
+Route::delete('/courses/{course}/modules/{module}/lessons/{lesson}', [LessonController::class, 'destroy']);

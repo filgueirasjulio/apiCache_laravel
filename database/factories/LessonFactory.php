@@ -17,7 +17,7 @@ class LessonFactory extends Factory
      */
     public function definition()
     {
-        $unique = $this->fake->unique()->name();
+        $unique = $this->faker->unique()->name();
 
         return [
             'module_id' => Module::factory(),

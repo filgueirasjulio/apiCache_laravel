@@ -39,11 +39,12 @@ class ModuleController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  string  $course_uuid
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUpdateModuleRequest $request)
+    public function store(StoreUpdateModuleRequest $request, string $course_uuid)
     {
-        $module = $this->service->storeNewModule($request->validated());
+        $module = $this->service->storeNewModule($request->validated(), $course_uuid);
 
         return new ModuleResource($module);
     }
